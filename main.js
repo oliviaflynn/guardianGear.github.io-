@@ -1,33 +1,17 @@
-var apiKey = "0bc20b61afd64962ab3b6a797448abb0";
+var data = null;
 
 var xhr = new XMLHttpRequest();
+xhr.withCredentials = true;
 
-xhr.open("GET", "https://www.bungie.net/platform//Destiny2/4/Account/4611686018470709327/Character/2305843009310267471/Stats/", true);
-xhr.setRequestHeader( "X-API-Key", apiKey);
+xhr.addEventListener("readystatechange", function () {
+  if (this.readyState === 4) {
+    console.log(this.responseText);
+  }
+});
 
-xhr.onreadystatechange = function(){
+xhr.open("GET", "https://www.bungie.net/platform//Destiny2/4/Account/4611686018470709327/Character/2305843009310267471/Stats/");
+xhr.setRequestHeader("X-API-KEY", "0bc20b61afd64962ab3b6a797448abb0");
+xhr.setRequestHeader("Cache-Control", "no-cache");
+xhr.setRequestHeader("Postman-Token", "815f6c9d-cdf2-454d-89e1-f0cd82150064");
 
- if(this.readyState === 4 && this.status === 200){
-
-  var json = JSON.parse(this.responseText);
-  console.log(json);
-
- }
-
-
-
-}
-
-xhr.send();
-
-/*
-var xhttp = new XMLHttpRequest();
-xhttp.open("GET", "https://www.bungie.net/platform/Destiny2/SearchDestinyPlayer/-1/Zyenax%231565/", true);
-xhttp.setRequestHeader('X-API-Key', 'MY KEY IS HERE');
-xhttp.onreadystatechange = function() {
-if (this.readyState == 4 && this.status == 200) {
-// Typical action to be performed when the document is ready:
-var data = JSON.parse(xhttp.responseText);
-console.log(data);
-}
-};*/
+xhr.send(data);
